@@ -5,3 +5,6 @@ Büşra'nın ı Büşra ve ' nın olarak ayıramazsın bir bütün. kesme işare
 Fiyatı (45.53 TL) tarihi (01/02/2020) ayıramazsın 
 virgül kullanışlı o varsa ayırabilirsin direkt
 Sunumda bunlar anlatılıyor ama tokenizer için sadece boşlukla ayırma ve öncesinde bazı özel karakterleri silme yapılıyormuş her yerde öyle
+
+Stopwordsleri iki farklı kaynaktan topladık https://www.kaggle.com/tbrknt/detection-of-cyberbullying-in-turkish ve https://github.com/tkorkunckaya/Turkish-Stopwords/blob/master/stopwords/mongo/stop_words_turkish.txt
+
