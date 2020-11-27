@@ -1,1 +1,6 @@
-
+Tokenization
+Sadece whitespace karakterlere göre ayırmak iyi bir çözüm değil. Url, hashtag, email adresleri özel. 
+Çok kelimeli yapılar var alt kategori gibi New York gibi bunlar ayrılmadan bütün değerlendirilmeli.
+Büşra'nın ı Büşra ve ' nın olarak ayıramazsın bir bütün. kesme işaretine dikkat. 
+Fiyatı (45.53 TL) tarihi (01/02/2020) ayıramazsın 
+virgül kullanışlı o varsa ayırabilirsin direkt
