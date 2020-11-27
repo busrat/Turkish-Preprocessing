@@ -4,3 +4,4 @@ Sadece whitespace karakterlere göre ayırmak iyi bir çözüm değil. Url, hash
 Büşra'nın ı Büşra ve ' nın olarak ayıramazsın bir bütün. kesme işaretine dikkat. 
 Fiyatı (45.53 TL) tarihi (01/02/2020) ayıramazsın 
 virgül kullanışlı o varsa ayırabilirsin direkt
+Sunumda bunlar anlatılıyor ama tokenizer için sadece boşlukla ayırma ve öncesinde bazı özel karakterleri silme yapılıyormuş her yerde öyle
