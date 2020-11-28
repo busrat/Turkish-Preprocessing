@@ -27,5 +27,8 @@ In order to verify the end of a sentence, the following methods are used.
 Using the list of languages abbreviations and the rules above, determining a strategy provides 95% accuracy. 
 However, if there are some cases in the sentence such as "D. H. Lawrence", ".hack//SIGN" which are not identified in the list of abbreviations, the accuracy of sentence splitting fall under the remaining 5%.
 
+The list of Turkish abbreviations are obtained from TDK website, but there were also abbreviations without punctuation in that list. Therefore, abbreviations that were not needed in our case were manually removed from the list.
+
 Resources:
 [1] https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation
+[2] http://tdk.gov.tr/wp-content/uploads/2019/01/K%C4%B1saltmalar_Dizini.pdf
