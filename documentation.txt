@@ -14,14 +14,18 @@ Calculate the frequency of all words in the combined texts. Sort them in falling
 You may also wish to remove the bottom 5%. These are not stop-words, but for a lot of machine learning, they are inconsequential. Maybe even misspellings.
 
 Sentence Splitting
-Sentence splitting is also known as sentence boundary disambiguation (SBD), sentence breaking, sentence boundary detection, and sentence segmentation. It is the problem of deciding where sentences begin and end. NLP tools often require their input to be split into sentences. However, sentence splitting is quite difficult due to the potential ambiguity of punctuation marks. For example, in written languages, a full stop may show the end of the sentence, or may indicate an abbreviation (Dr.), a decimal point (5.259), an ellipsis (...), or an email address (com.tr). [1]
+Sentence splitting is also known as sentence boundary disambiguation (SBD), sentence breaking, sentence boundary detection, and sentence segmentation. 
+It is the problem of deciding where sentences begin and end. NLP tools often require their input to be split into sentences. 
+However, sentence splitting is quite difficult due to the potential ambiguity of punctuation marks. 
+For example, in written languages, a full stop may show the end of the sentence, or may indicate an abbreviation (Dr.), a decimal point (5.259), an ellipsis (...), or an email address (com.tr). [1]
 
 In order to verify the end of a sentence, the following methods are used.
 1. If it's a full stop, it ends a sentence.
 2. If the preceding token is in the hand-compiled list of abbreviations, then it doesn't end a sentence. [The list of the Turkish abbreviations exists in our GitHub repo.]
 3. If the next token is capitalized, then it ends a sentence.
 
-Using the list of languages abbreviations and the rules above, determining a strategy provides 95% accuracy. However, if there are some cases in the sentence such as "D. H. Lawrence", ".hack//SIGN" which are not identified in the list of abbreviations, the accuracy of sentence splitting fall under the remaining 5%.
+Using the list of languages abbreviations and the rules above, determining a strategy provides 95% accuracy. 
+However, if there are some cases in the sentence such as "D. H. Lawrence", ".hack//SIGN" which are not identified in the list of abbreviations, the accuracy of sentence splitting fall under the remaining 5%.
 
 Resources:
 [1] https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation
