@@ -57,8 +57,7 @@ def split_sentences(text):
     text = text.replace("<exclamationMarkQuotes>", "!\" ")
     text = text.replace("<questionMarkQuotes>", "?\" ")
 
-    text = text.replace("<stop> ",
-                        "<stop>")  # To get rid of the space after the punctuations in the end of the sentence
+    text = text.replace("<stop> ", "<stop>")  # To get rid of the space after the punctuations in the end of the sentence
     sentences = text.split("<stop>")
     sentences = sentences[:-1]
     return sentences
