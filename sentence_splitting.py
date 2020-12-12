@@ -9,7 +9,7 @@ def read_corpus():
     return contentArray
 
 def read_list_of_abbreviations():
-    with open("turkish_abbreviations.txt", encoding="utf8") as f:
+    with open("Turkish_Abbreviations.txt", encoding="utf8") as f:
         abbreviations = f.readlines()
     abbreviations = [x.strip() for x in abbreviations]
     return abbreviations
