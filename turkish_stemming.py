@@ -239,24 +239,6 @@ def main():
     readStemsList()
     readSuffixesList()
 
-    user_input=[]
-    say=0
-
-    # dosya='alice'
-    # fad="veri/{}-cozulenler.txt".format(dosya)
-    # ftamam = open(fad,"w",encoding="utf-8")
-    # fad="veri/{}-cozulen-kokler.txt".format(dosya)
-    # ftamamkok = open(fad,"w",encoding="utf-8")
-    # fname = "veri/{}_kelimeler.txt".format(dosya)
-    # with open(fname,"r") as f:
-    #     for line in f.readlines():
-    #         l = line.split()
-    #         for k in l:
-    #             user_input.append(k.strip())
-    #             say+=1
-    #             #if say>=1000: break
-
-
     user_input = ["kitapçılarınki", "bardağın"]
     for word in user_input:
         if len(word) == 0:
