@@ -30,6 +30,7 @@ classifier = nltk.NaiveBayesClassifier.train(trainSet)
 accuracy = nltk.classify.accuracy(classifier, testSet) 
 
 def sentenceSplitter(words):
+   words = word_tokenize(words)
     start = 0
     sents = []
     for i, word in enumerate(words):
@@ -41,7 +42,4 @@ def sentenceSplitter(words):
     return sents
 
 text = "Planla Kıbrıs'ın Rumların denetimi altına verildiğini, nüfus aktarımının da Rumlar lehine gelişeceğini ifade eden Linn, Bu da Kıbrıslı Türklerin kendi ülkelerinde bağımsızlıklarının sonu olacaktır dedi. Sözlerine 20.02.2020'de şöyle devam etti. Anayasanın 5. maddesine göre sen Dr. olamazsın."
-arr = word_tokenize(text)
-print(arr)
-deneme = sentenceSplitter(arr)
-print(deneme)
+print(sentenceSplitter(text))
