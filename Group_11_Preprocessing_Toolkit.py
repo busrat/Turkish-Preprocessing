@@ -17,7 +17,7 @@ class StopWordElimination:
         self.stopwords = self.readStopWords()
 
     def readStopWords(self):
-        return pd.read_csv('stopwords.txt', error_bad_lines=False, sep=',', header=None)
+        return pd.read_csv('Turkish_Stopwords.txt', error_bad_lines=False, sep=',', header=None)
 
     def eliminatorUsingList(self, contentArr):
         for ca in contentArr:
