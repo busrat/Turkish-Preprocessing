@@ -37171,6 +37171,7 @@ edışınden edişinden
 edışını edişini
 edşk edik
 edşyor ediyor
+edti etti
 eebilir edebilir
 eebilirsiniz edebilirsiniz
 eedelim edelim
@@ -74101,6 +74102,7 @@ kongrenın kongrenin
 kongresı kongresi
 kongresıne kongresine
 kongreyı kongreyi
+kongıre kongre
 konida konuda
 konix konik
 konjoktüre konjonktüre
