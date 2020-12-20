@@ -1,6 +1,6 @@
 import pandas as pd
 
-stopwords = pd.read_csv('stopwords.txt', error_bad_lines=False, sep=',', header=None);
+stopwords = pd.read_csv('Turkish_Stopwords.txt', error_bad_lines=False, sep=',', header=None);
     
 def eliminatorUsingList(contentArr): 
     for ca in contentArr:
