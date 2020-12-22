@@ -121,7 +121,7 @@ class SentenceSplittingLogisticReg:
         a, b = map(list, zip(*trainSet))
         c, d = map(list, zip(*testSet))
 
-        pipe = make_pipeline(DictVectorizer(), LogisticRegressionCV())
+        pipe = make_pipeline(DictVectorizer(), LogisticRegressionCV(max_iter=1200000))
         pipe.fit(a, b)
         y_new = pipe.predict(c)
         accuracy = metrics.accuracy_score(d, y_new)
@@ -478,50 +478,47 @@ class Initialization:
     def MenuChoice(self):
         valid = ["0", "1", "2", "3", "4", "5"]
         while True:
-            userInput = input()
+            userInput = input("User choice: ")
             if userInput in valid:
-                self.menuCheck(userInput)
+                self.MenuCheck(userInput)
                 break
             else:
-                print("{} is not a correct choice. Please try again.".format(userInput))
+                print("{} is not a correct choice. Please try again.\n".format(userInput))
                 continue
 
-    def menuCheck(self, userInput):
+    def MenuCheck(self, userInput):
         if userInput == "0":
             exit()
         elif userInput == "1":
-            self.callTokenization()
+            self.CallTokenization()
         elif userInput == "2":
-            self.callSentenceSplitting()
+            self.CallSentenceSplitting()
         elif userInput == "3":
-            self.callNormalization()
+            self.CallNormalization()
         elif userInput == "4":
-            self.callStemming()
+            self.CallStemming()
         elif userInput == "5":
-            self.callStopWordElimination()
+            self.CallStopWordElimination()
 
-    def callTokenization(self):
-        print("\nPlease choose a tokenization model using a or b keywords. Press 0 to return to the previous menu.\n")
-        print("\ta. Rule-based Model\n"
-              "\tb. Machine Learning Model\n"
-              "\t0. Return to the previous menu")
-
-        valid = ["0", "a", "b"]
+    def CheckContinuity(self):
+        print("\nPlease choose\n\t0. Exit\n\t1. Return to the main menu\n")
         while True:
             userInput = input()
-            if userInput in valid:
-                if userInput == "0":
-                    main()
-                elif userInput == "a":
-                    text = self.getTextFromUser("rule-based tokenization")
-                    text = Tokenization().removeSomeCharacters(text)
-                    print("\nTokenized text: ", text)
+            if userInput == "0":
+                 exit()
+            elif userInput == "1":
+                main()
                 break
             else:
                 print("{} is not a correct choice. Please try again.".format(userInput))
-                continue
 
-    def callStopWordElimination(self):
+    def CallTokenization(self):
+        text = self.GetTextFromUser("rule-based tokenization")
+        text = Tokenization().removeSomeCharacters(text)
+        print("\nTokenized text: ", text)
+        self.CheckContinuity()
+
+    def CallStopWordElimination(self):
         print("\nPlease choose a stopword elimination approach using a or b keywords. Press 0 to return to the previous menu.\n")
         print("\ta. Static Approach\n"
               "\tb. Dynamic Approach\n"
@@ -534,12 +531,12 @@ class Initialization:
                 if userInput == "0":
                     main()
                 elif userInput == "a":
-                    text = self.getTextFromUser("static stopword elimination approach")
+                    text = self.GetTextFromUser("static stopword elimination approach")
                     text = Tokenization().removeSomeCharacters(text)
                     text = StopWordElimination().eliminatorUsingList(text)
                     print("\nOutput text: ", text)
                 elif userInput == "b":
-                    clearScreen()
+                    ClearScreen()
                     lastList = []
                     excelDF = pd.ExcelFile('news.xls')
                     df1 = pd.read_excel(excelDF, sheet_name=0)
@@ -549,15 +546,16 @@ class Initialization:
                         content = Tokenization().removeSomeCharacters(content)
                         lastList.append(content)
                     text = StopWordElimination().dynamicEliminator(lastList)
-                    clearScreen()
+                    ClearScreen()
                     print("Input text before dynamic stopword elimination: ", contentArray[0])
                     print("\nOutput text after dynamic stopword elimination: ", text[0])
                 break
             else:
                 print("{} is not a correct choice. Please try again.".format(userInput))
                 continue
+        self.CheckContinuity()
 
-    def callSentenceSplitting(self):
+    def CallSentenceSplitting(self):
         print("\nPlease choose a sentence splitting model using a or b keywords. Press 0 to return to the previous menu.\n")
         print("\ta. Rule-based Model\n"
               "\tb. Machine Learning Model\n"
@@ -570,22 +568,24 @@ class Initialization:
                 if userInput == "0":
                     main()
                 elif userInput == "a":
-                    text = self.getTextFromUser("rule-based sentence splitting")
+                    text = self.GetTextFromUser("rule-based sentence splitting")
                     text = SentenceSplitting().split_sentences(text)
                     print("\nSplitted text:\n")
                     print(*text, sep='\n')
                 elif userInput == "b":
-                    text = self.getTextFromUser("sentence splitting with logistic regression")
+                    text = self.GetTextFromUser("sentence splitting with logistic regression")
                     splittedSentences, accuracy = SentenceSplittingLogisticReg().sentenceSplitter(text)
-                    print(splittedSentences)
-                    print(accuracy)
+                    print("\nSplitted Sentence:")
+                    print(*splittedSentences, sep='\n')
+                    print("\nAccuracy of the Logistic Regression model: %.2f" % accuracy)
                 break
             else:
                 print("{} is not a correct choice. Please try again.".format(userInput))
                 continue
+        self.CheckContinuity()
 
-    def callStemming(self):
-        text = self.getTextFromUser("sentence splitting")
+    def CallStemming(self):
+        text = self.GetTextFromUser("stemming")
         text = Tokenization().removeSomeCharacters(text)
         stemList = []
         for word in text:
@@ -596,36 +596,38 @@ class Initialization:
                 stemList.append(word)
             else:
                 stemList.append(stem)
-        print("\nStems: ", stemList)
+        print("\nStem: ", stemList)
+        self.CheckContinuity()
 
-    def callNormalization(self):
-        text = self.getTextFromUser("normalization")
+    def CallNormalization(self):
+        text = self.GetTextFromUser("normalization")
         text = Tokenization().removeSomeCharacters(text)
         for word in text:
-            normalizedList = Normalization().checkInputWord(word)
-            if len(normalizedList) != 0:
-                print("{} -> {}\n".format(word, normalizedList))
+            if not any(c.isdigit() for c in word):
+                normalizedList = Normalization().checkInputWord(word)
+                if len(normalizedList) != 0:
+                    print("{} -> {}".format(word, normalizedList))
+        self.CheckContinuity()
 
-    def getTextFromUser(self, method):
-        clearScreen()
-        print("\nPlease enter a text for {}:\n".format(method))
-        text = input()
+    def GetTextFromUser(self, method):
+        ClearScreen()
+        text = input("Please enter a text for {}: ".format(method))
         return text
 
 def main():
-    clearScreen()
+    ClearScreen()
     print("\t\t\tTEXT PREPROCESSING TOOLKIT\t\t\t")
     print("=====================================================================================")
     print("Please choose a preprocessing method using the numbers 1 through 5. Press 0 to exit.\n"
+          "\t0. Exit\n"
           "\t1. Tokenization\n"
           "\t2. Sentence Splitting\n"
           "\t3. Normalization\n"
           "\t4. Stemming\n"
-          "\t5. StopWord Elimination\n"
-          "\t0. Exit")
+          "\t5. StopWord Elimination\n")
     Initialization().MenuChoice()
 
-def clearScreen():
+def ClearScreen():
     clear = lambda: os.system("cls")
     clear()
 
