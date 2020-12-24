@@ -11,6 +11,7 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.pipeline import make_pipeline
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegressionCV
+from nltk.corpus import stopwords  
 
 class StopWordElimination:
     def __init__(self):
@@ -20,11 +21,14 @@ class StopWordElimination:
         return pd.read_csv('Turkish_Stopwords.txt', error_bad_lines=False, sep=',', header=None)
 
     def eliminatorUsingList(self, contentArr):
+        stop_words = set(stopwords.words('turkish'))
+        stop_words = list(stop_words)
+        stop_words.extend(self.stopwords[0].values)
         for ca in contentArr:
-            if ca in self.stopwords[0].values:
+            if ca in stop_words:
                 contentArr.remove(ca)
         return contentArr
-
+    
     def dynamicEliminator(self, lastList):
         frequencyDictionary = {}
         for wordList in lastList:
