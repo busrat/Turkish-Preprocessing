@@ -193,7 +193,7 @@ class SentenceSplittingLogisticReg:
         return {'isNextWordCapitalized': tokens[i][0].isupper(),
                 'previousWord': tokens[i - 1].lower(),
                 'punctuation': tokens[i],
-                'isPreviousWordIsOneChar': len(tokens[i - 1]) == 1}
+                'IsPreviousWordIsSmallerThanFourChar': len(tokens[i-1]) <= 3}
 
 class Stemming:
     def __init__(self):
